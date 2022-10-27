@@ -11,11 +11,6 @@ export const filterSlise = createSlice({
 });
 
 
-     
-  //  const handleChange = (e) => {
-  //    const { value } = e.target;
-  //   setFilter(value)
-  // };
 
 
 

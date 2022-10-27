@@ -18,9 +18,9 @@ export default function App() {
     >
       React homework template
       <h2 style={{ fontSize: "25px" }}>Phonebook</h2>
-      <ContactFormrm />
+      {/* <ContactFormrm /> */}
       <h2 style={{ fontSize: "25px" }}>Contacts</h2>
-      <Filter />
+      {/* <Filter /> */}
       <ContactsList />
            
     </div>

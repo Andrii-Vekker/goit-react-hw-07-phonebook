@@ -2,29 +2,37 @@ import { List, Item } from "./ContactList.styled";
 import { BtnAdd } from "components/Form/Form.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { removeContacts } from "redux/contactsSlise";
+import { fetchContacts } from "redux/ContactsOperations";
+import { useEffect } from "react";
 
 
 export default function ContactsList() {;
-    const filterValue = useSelector(state => state.filter.filter);
-    const storeContacts = useSelector(state => state.contacts.contacts)
-    const dispatch = useDispatch()
+    // const filterValue = useSelector(state => state.filter.filter);
+    // const storeContacts = useSelector(state => state.contacts.contacts)
+    const dispatch = useDispatch();
+    const contacts = useSelector(state => state.contacts.items)
 
-      const filteredContacts = () => {
-      const normalizedFilter = filterValue.toLowerCase();
-      return storeContacts.filter(contact => contact.name.toLowerCase()
-        .includes(normalizedFilter))
-  };
+    useEffect(() => {
+  dispatch(fetchContacts())
+    }, [dispatch])
+    
 
-  const visibleContacts = filteredContacts()
+//       const filteredContacts = () => {
+//       const normalizedFilter = filterValue.toLowerCase();
+//       return storeContacts.filter(contact => contact.name.toLowerCase()
+//         .includes(normalizedFilter))
+//   };
+
+//   const visibleContacts = filteredContacts()
      
    
     return (
         <>
                 <List>
-                {visibleContacts.map(({ name, number, id }) => (
+                {contacts.map(({ name, phone, id }) => (
                 
-                    <Item key={id}>{name} : {number}
-                        <BtnAdd type="button" onClick={() => dispatch(removeContacts({id}))}>Delete
+                    <Item key={id}>{name} : {phone}
+                        <BtnAdd type="button">Delete
                         </BtnAdd>
                     </Item>
                                     
@@ -34,3 +42,4 @@ export default function ContactsList() {;
     );
 };
 
+{/* <BtnAdd type="button" onClick={() => dispatch(removeContacts({id}))} */}

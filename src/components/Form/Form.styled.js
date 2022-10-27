@@ -15,7 +15,8 @@ width: 400px;
 
 export const BtnAdd = styled.button`
 display: inline-block;
-width: 90px;
+justify-content: flex-end;
+width: 70px;
 height: 25px;
 :hover{
     background-color:skyblue;

@@ -24,6 +24,7 @@ margin-bottom: 10px;
 `
 
 export const List = styled.ul`
+width: 100%;
 list-style: none;
 padding: 0;
 font-size: 25px
@@ -32,7 +33,8 @@ font-size: 25px
 
 export const Item = styled.li`
 font-size: 20px;
-width: 400px;
+width: 100%;
+margin: 0 ;
 margin-bottom: 8px;
 display: flex;
 justify-content: space-between;
