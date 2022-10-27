@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { filterSlise } from "./filterSlise";
 import { contactsSlise } from "./contactsSlise";
-import contactsReduser from "./contactsSlise"
+import  contactsReducer  from "./contactsSlise";
 
 
 
@@ -10,7 +10,7 @@ export const store = configureStore({
     // contacts: contactsSlise.reducer,
     // filter: filterSlise.reducer
     ////////////////////
-   contacts: contactsReduser,
+   contacts: contactsReducer,
                filter: ""
     },
   

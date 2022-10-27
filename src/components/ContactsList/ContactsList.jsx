@@ -10,8 +10,8 @@ export default function ContactsList() {;
     // const filterValue = useSelector(state => state.filter.filter);
     // const storeContacts = useSelector(state => state.contacts.contacts)
     const dispatch = useDispatch();
-    const contacts = useSelector(state => state.contacts.items)
-
+    const contacts = useSelector(state => state.contacts.items) 
+console.log(contacts)
     useEffect(() => {
   dispatch(fetchContacts())
     }, [dispatch])
@@ -29,7 +29,7 @@ export default function ContactsList() {;
     return (
         <>
                 <List>
-                {contacts.map(({ name, phone, id }) => (
+                {contacts.length>0 &&   contacts.map(({ name, phone, id }) => (
                 
                     <Item key={id}>{name} : {phone}
                         <BtnAdd type="button">Delete
