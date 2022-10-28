@@ -2,7 +2,7 @@ import { List, Item } from "./ContactList.styled";
 import { BtnAdd } from "components/Form/Form.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { removeContacts } from "redux/contactsSlise";
-import { fetchContacts } from "redux/ContactsOperations";
+import { addContacts, fetchContacts } from "redux/ContactsOperations";
 import { useEffect } from "react";
 
 
@@ -11,10 +11,12 @@ export default function ContactsList() {;
     // const storeContacts = useSelector(state => state.contacts.contacts)
     const dispatch = useDispatch();
     const contacts = useSelector(state => state.contacts.items) 
-console.log(contacts)
     useEffect(() => {
-  dispatch(fetchContacts())
-    }, [dispatch])
+        dispatch(fetchContacts());
+    }, [dispatch]);
+
+   
+    
     
 
 //       const filteredContacts = () => {

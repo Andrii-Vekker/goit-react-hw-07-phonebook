@@ -33,7 +33,7 @@ font-size: 25px
 
 export const Item = styled.li`
 font-size: 20px;
-width: 100%;
+width: 50%;
 margin: 0 ;
 margin-bottom: 8px;
 display: flex;

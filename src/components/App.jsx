@@ -1,4 +1,4 @@
-import ContactFormrm from "./Form/ContactForm";
+import ContactForm from "./Form/ContactForm";
 import ContactsList from "./ContactsList/ContactsList";
 import Filter from "./Filter/Filter";
 
@@ -18,7 +18,7 @@ export default function App() {
     >
       React homework template
       <h2 style={{ fontSize: "25px" }}>Phonebook</h2>
-      {/* <ContactFormrm /> */}
+      <ContactForm />
       <h2 style={{ fontSize: "25px" }}>Contacts</h2>
       {/* <Filter /> */}
       <ContactsList />
