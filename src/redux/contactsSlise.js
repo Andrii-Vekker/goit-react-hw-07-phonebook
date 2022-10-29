@@ -1,5 +1,7 @@
 import { fetchContacts, addContacts, deleteContacts } from "./ContactsOperations";
 import { createSlice } from "@reduxjs/toolkit";
+import Loader from "components/Loader/Loader";
+
 // import { createReducer, combineReducers } from "@reduxjs/toolkit";
 // import {fetchContactsRequest, fetchContactsSuccess, fetchContactsError, addContactsRequest,
 // addContactsSuccess,
@@ -18,7 +20,8 @@ export const contactsReducer = createSlice({
     },
     extraReducers: {
         [fetchContacts.pending]: (state) => {
-            state.isLoading = true
+            state.isLoading = true;
+            
         },
         [fetchContacts.fulfilled]: (state, { payload }) => {
             state.isLoading = false
@@ -43,8 +46,9 @@ export const contactsReducer = createSlice({
             state.isLoading = true
         },
         [deleteContacts.fulfilled]: (state, { payload }) => {
+            console.log(payload)
             state.isLoading = false
-            state.items =  state.items.filter(({id}) => id !== payload.id)
+            state.items =  state.items.filter(({id}) => id !== payload)
         },
         [deleteContacts.rejected]: (state, { payload }) => {
             state.isLoading = false;

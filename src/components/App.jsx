@@ -1,9 +1,9 @@
 import ContactForm from "./Form/ContactForm";
 import ContactsList from "./ContactsList/ContactsList";
 import Filter from "./Filter/Filter";
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
-
   return (
   <div
       style={{
@@ -17,6 +17,7 @@ export default function App() {
       }}
     >
       React homework template
+      <ToastContainer/>
       <h2 style={{ fontSize: "25px" }}>Phonebook</h2>
       <ContactForm />
       <h2 style={{ fontSize: "25px" }}>Contacts</h2>

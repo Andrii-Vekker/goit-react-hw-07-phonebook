@@ -24,7 +24,6 @@ const initialValues = {
 export default function ContactForm() {
     const dispatch = useDispatch();
     const contactsData = useSelector(state => state.contacts.items);
-
     const handleSubmit = (values, { resetForm }) => {
         values.id = nanoid();
        if (!contactsData.includes(values.name)) {
@@ -48,7 +47,7 @@ export default function ContactForm() {
                         <Input type="tel" name="phone" />
                     <ErrorMessage name='phone' component="div"/> 
                 </Label>
-                <BtnAdd type="submit">Add contact</BtnAdd>
+                    <BtnAdd type="submit">Add contact{ }</BtnAdd>
             </FormContainer>
             </Formik>
             </>

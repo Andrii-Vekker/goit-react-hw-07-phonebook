@@ -24,7 +24,7 @@ margin-bottom: 10px;
 `
 
 export const List = styled.ul`
-width: 100%;
+width: 50%;
 list-style: none;
 padding: 0;
 font-size: 25px
