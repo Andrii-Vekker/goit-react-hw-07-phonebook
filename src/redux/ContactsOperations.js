@@ -1,73 +1,103 @@
-import {fetchContactsRequest, fetchContactsSuccess, fetchContactsError, addContactsRequest,
-addContactsSuccess,
-addContactsError,
-deleteContactsRequest,
-deleteContactsSuccess,
-deleteContactsError } from "./contactsActions";
 import { getContacts, addContact, removeContact } from "API/Api";
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+// import {fetchContactsRequest, fetchContactsSuccess, fetchContactsError, addContactsRequest,
+// addContactsSuccess,
+// addContactsError,
+// deleteContactsRequest,
+// deleteContactsSuccess,
+// deleteContactsError } from "./contactsActions";
 
-export const fetchContacts = () => async dispatch => {
-    dispatch(fetchContactsRequest());
-    try {
-        const contacts = await getContacts();
-        dispatch(fetchContactsSuccess(contacts))
-    } catch (error) {
-        dispatch(fetchContactsError(error.message))
-    }
-};
+/////////////////////createAsyncThunk//////////////////////
 
-
-const isDublicate = ({ name, phone }, contacts) => {
+  const isDublicate = ({ name, phone }, contacts) => {
   const normalizedName = name.toLowerCase()
-  // const normalizedPhone = phone.toLowerCase()
-    
-  const result = contacts.find(item => {
+      const result = contacts.find(item => {
     return (normalizedName === item.name.toLowerCase())
   });
   return result
 };
 
-export const addContacts = (data) => async (dispatch, getstate) => {
-  console.log(data)
-  const { contacts } = getstate()
-  if (isDublicate(data, contacts.items)) {
-    return alert("fuck");
-  };
-  dispatch(addContactsRequest());
-  try {
-    const result = await addContact(data);
-console.log(result)
-    dispatch(addContactsSuccess(result))
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchContacts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const contacts = await getContacts();
+      return contacts
     } catch (error) {
-      dispatch(addContactsError(error.message))
-  };
+      return rejectWithValue(error.message)
+    };
+  });
 
-};
-
-export const deleteContact = (id) => async (dispatch) => {
-try {
-    dispatch(deleteContactsRequest());
-    await removeContact(id);
-    dispatch(deleteContactsSuccess(id))
+  export const addContacts = createAsyncThunk(
+  'contacts/addContacts',
+    async (data, { rejectWithValue }) => {
+    console.log(data)
+    try {
+      const contacts = await addContact(data);
+      return contacts
     } catch (error) {
-      dispatch(deleteContactsError(error.message))
-  };
-}
-
-
-/////////////////////createAsyncThunk//////////////////////
-
-
-
-// First, create the thunk
-// export const fetchContacts = createAsyncThunk(
-//   'contacts/fetchContacts',
-//   async (_, { rejectWithValue }) => {
+      return rejectWithValue(error.message)
+      };
+      
+    },
+    {
+      condition: (data, {getState}) => {
+     const {contacts} = getState() 
+       if (isDublicate(data, contacts.items)) {
+        alert("ou shit")
+       }
+    }
+    });
+  
+    export const deleteContacts = createAsyncThunk(
+  'contacts/deleteContacts',
+      async (id, { rejectWithValue }) => {
+    try {
+      await removeContact(id);
+      return id
+    } catch (error) {
+      return rejectWithValue(error.message)
+    };
+  });
+////////////////////////////////////////////////////////////////////////
+// export const fetchContacts = () => async dispatch => {
+//     dispatch(fetchContactsRequest());
 //     try {
 //       const contacts = await getContacts();
-//       return contacts
+//         dispatch(fetchContactsSuccess(contacts))
 //     } catch (error) {
-//       return rejectWithValue(error.message)
-//     };
-//   });
+//         dispatch(fetchContactsError(error.message))
+//     }
+// };
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+// export const addContacts = (data) => async (dispatch, getstate) => {
+//   // console.log(data)
+//   const { contacts } = getstate()
+//   if (isDublicate(data, contacts.items)) {
+//     return alert("fuck");
+//   };
+//   dispatch(addContactsRequest());
+//   try {
+//     const result = await addContact(data);
+// // console.log(result)
+//     dispatch(addContactsSuccess(result))
+//     } catch (error) {
+//       dispatch(addContactsError(error.message))
+//   };
+
+// };
+
+// export const deleteContact = (id) => async (dispatch) => {
+// try {
+//     dispatch(deleteContactsRequest());
+//     await removeContact(id);
+//     dispatch(deleteContactsSuccess(id))
+//     } catch (error) {
+//       dispatch(deleteContactsError(error.message))
+//   };
+// }
+
+

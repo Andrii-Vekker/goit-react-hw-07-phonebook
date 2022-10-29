@@ -5,7 +5,7 @@ import Filter from "./Filter/Filter";
 export default function App() {
 
   return (
-    <div
+  <div
       style={{
         padding: "32px",
         height: '100vh',
@@ -20,10 +20,9 @@ export default function App() {
       <h2 style={{ fontSize: "25px" }}>Phonebook</h2>
       <ContactForm />
       <h2 style={{ fontSize: "25px" }}>Contacts</h2>
-      {/* <Filter /> */}
+      <Filter />
       <ContactsList />
-           
-    </div>
+  </div>
   );
 };
 
